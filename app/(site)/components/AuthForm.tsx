@@ -13,6 +13,7 @@ import Input from "../../components/inputs/Input";
 import Button from "@/app/components/Button";
 import AuthSocialButton from "./AuthSocialButton";
 import toast from "react-hot-toast";
+import { signIn } from "next-auth/react";
 
 type variant = 'LOGIN' | 'REGISTER'
 const AuthForm = () => {
@@ -50,7 +51,20 @@ const AuthForm = () => {
         }
 
         if (variant === 'LOGIN') {
-            // NextAuth SignIn
+            signIn('credentials', {
+                ...data,
+                redirect: false
+            })
+            .then ((callback) => {
+                if (callback?.error) {
+                    toast.error('Invalid credentials');
+                }
+
+                if (callback?.ok && !callback?.error) {
+                    toast.success('Logged in successfully!');
+                }
+            })
+            .finally(() => setIsLoading(false));
         }
     }
 
