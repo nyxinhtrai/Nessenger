@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
       "lh3.googleusercontent.com"
     ],
   },
+
+  devIndicators: false
 };
 
 export default nextConfig;
