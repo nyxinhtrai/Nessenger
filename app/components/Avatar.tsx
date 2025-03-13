@@ -12,11 +12,6 @@ interface AvatarProps {
 const Avatar: React.FC<AvatarProps> = ({
     user
 }) => {
-
-    //fix session
-    const { data: session } = useSession();
-    const userImage = session?.user?.image || user?.image || "/images/avtdefault.jpg";
-
     return (
         <div className="relative">
             <div
@@ -33,7 +28,7 @@ const Avatar: React.FC<AvatarProps> = ({
             >
                 <Image 
                     alt="Avatar"
-                    src={userImage}
+                    src={user?.image || '/images/avtdefault.jpg'}
                     fill
                     sizes="(max-width: 768px) 36px, (max-width: 1200px) 44px, 48px"
                 />
