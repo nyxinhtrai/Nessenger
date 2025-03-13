@@ -1,8 +1,7 @@
 'use client';
 
-import { useSession } from "next-auth/react";
-
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 import { User } from "@prisma/client";
 
 interface AvatarProps {
@@ -12,6 +11,15 @@ interface AvatarProps {
 const Avatar: React.FC<AvatarProps> = ({
     user
 }) => {
+    const { data: session } = useSession(); 
+    let userImage = '/images/avtdefault.jpg';
+    
+    if (user?.image) {
+        userImage = user.image;
+    } else if (!user && session?.user?.image) {
+        userImage = session.user.image;
+    }
+
     return (
         <div className="relative">
             <div
@@ -28,7 +36,7 @@ const Avatar: React.FC<AvatarProps> = ({
             >
                 <Image 
                     alt="Avatar"
-                    src={user?.image || '/images/avtdefault.jpg'}
+                    src={userImage}
                     fill
                     sizes="(max-width: 768px) 36px, (max-width: 1200px) 44px, 48px"
                 />
