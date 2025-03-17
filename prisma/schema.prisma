@@ -20,7 +20,7 @@ model User {
   emailVerified DateTime?
   image String?
   hashedPassword String?
-  createAt DateTime @default(now())
+  createdAt DateTime @default(now())
   updateAt DateTime @updatedAt
 
   conversationIds String[] @db.ObjectId
