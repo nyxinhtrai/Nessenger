@@ -35,7 +35,6 @@ const Button: React.FC<ButtonProps> = ({
                 font-semibold
                 cursor-pointer
                 focus-visible:outline
-                focus-visible:outline-2
                 focus-visible:outline-offset-2
             `,
             disabled && 'opacity-50 cursor-default',
