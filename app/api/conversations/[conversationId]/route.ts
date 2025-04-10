@@ -3,16 +3,14 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from "@/app/libs/prismadb";
 import { pusherServer } from "@/app/libs/pusher";
 
-interface IParams {
-  conversationId: string;
-}
+
 
 export async function DELETE(
   req: Request,
-  context: { params: Promise<IParams> }
+  { params }: { params: Promise<{ conversationId: string }> }
 ) {
   try {
-    const { conversationId } = await context.params;
+    const { conversationId } = await params;
     const currentUser = await getCurrentUser();
 
     if (!currentUser?.id) {
