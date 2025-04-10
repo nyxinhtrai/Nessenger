@@ -16,12 +16,6 @@ const MobileItem: React.FC<MobileItemProps> = ({
     active,
     onClick
 }) => {
-    const handleClick = () => {
-        if (onClick) {
-            return onClick();
-        }
-    }
-
     return (
         <Link 
             onClick={onClick}
