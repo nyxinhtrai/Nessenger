@@ -22,7 +22,7 @@ const getUsers = async () => {
         });
 
         return users;
-    } catch (error: any) {
+    } catch (error: unknown) {
         return [];
     }
 };
