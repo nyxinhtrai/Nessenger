@@ -18,7 +18,7 @@ const getMessages = async (
         });
 
         return messages;
-    } catch (error: unknown) {
+    } catch {
         return [];
     }
 };
