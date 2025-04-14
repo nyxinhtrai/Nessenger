@@ -5,45 +5,47 @@ import Header from "./components/Header";
 import Body from "./components/Body";
 import Form from "./components/Form";
 
-interface IParams {
-    conversationId?: string;
+interface ConversationIdPageProps {
+  params: Promise<{
+    conversationId: string;
+  }>;
 }
 
-const ConversationId = async ({ params }: { params: IParams }) => {
-    const { conversationId } = await Promise.resolve(params);
+const ConversationIdPage = async ({ params }: ConversationIdPageProps) => {
+  const { conversationId } = await params;
 
-    if (!conversationId) {
-        return (
-            <div className="lg:pl-80 h-full">
-                <div className="h-full flex flex-col">
-                    <EmptyState />
-                </div>
-            </div>
-        )
-    }
-    
-    const conversation = await getConversationById(conversationId);
-    const messages = await getMessages(conversationId);
-
-    if (!conversation) {
-        return (
-            <div className="lg:pl-80 h-full">
-                <div className="h-full flex flex-col">
-                    <EmptyState />
-                </div>
-            </div>
-        )
-    }
-    
+  if (!conversationId) {
     return (
-        <div className="lg:pl-80 h-full">
-            <div className="h-full flex flex-col">
-                <Header conversation={conversation} />
-                <Body initialMessages={messages} />
-                <Form />
-            </div>
+      <div className="lg:pl-80 h-full">
+        <div className="h-full flex flex-col">
+          <EmptyState />
         </div>
+      </div>
     );
-}
+  }
 
-export default ConversationId;
+  const conversation = await getConversationById(conversationId);
+  const messages = await getMessages(conversationId);
+
+  if (!conversation) {
+    return (
+      <div className="lg:pl-80 h-full">
+        <div className="h-full flex flex-col">
+          <EmptyState />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="lg:pl-80 h-full">
+      <div className="h-full flex flex-col">
+        <Header conversation={conversation} />
+        <Body initialMessages={messages} />
+        <Form />
+      </div>
+    </div>
+  );
+};
+
+export default ConversationIdPage;
