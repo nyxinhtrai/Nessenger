@@ -149,7 +149,7 @@ const AuthForm = () => {
                             fullWidth
                             type="submit"
                         >
-                            {variant === 'LOGIN' ? 'Sign in' : 'Resgister'}
+                            {variant === 'LOGIN' ? 'Sign in' : 'Register'}
                         </Button>
                     </div>
                 </form>
